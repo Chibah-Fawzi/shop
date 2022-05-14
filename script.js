@@ -74,12 +74,12 @@ function AjouterPanier(id) {
         produitsPanier.push(produitActuel)
         /* html */
         tableBody.innerHTML += ` 
-        <tr>
+        <tr id='cart-row${produitActuel.id}'>
     <td>${produitActuel.id}</td>
     <td>${produitActuel.nom}</td>
     <td id="Quantity${produitActuel.id}">${produitActuel.quantity}</td>
     <td id="Price${produitActuel.id}">${produitActuel.prix}</td>
-    <td><button>Delete</button></td>
+    <td><button onclick='DeleteItem(${produitActuel.id})'>Delete</button></td>
     </tr>
    `
     }
@@ -87,5 +87,15 @@ function AjouterPanier(id) {
 
 
 function DeleteItem(id) {
+    produitsPanier = produitsPanier.filter((element) => element.id != id)
+
+    var produitActuel = listeDesProduits[id]
+
+    if (produitActuel.quantity > 1) {
+        produitActuel.quantity--
+        document.getElementById("Quantity" + produitActuel.id).innerHTML = produitActuel.quantity
+    } else {
+        document.getElementById('cart-row' + id).remove()
+    }
 
 }
