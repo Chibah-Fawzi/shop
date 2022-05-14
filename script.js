@@ -6,8 +6,10 @@ var images = ['dossierImage/image.jpg', "dossierImage/img.jpg", "https://upload.
 var amounts = [5, 12, 14, 15, 9]
 
 var listeDesProduits = []
+var produitsPanier = []
 
 var affichageHTML = ''
+
 function ShowProducts() {
 
 
@@ -46,7 +48,9 @@ function ShowProducts() {
 
 ShowProducts()
 
-var produitsPanier = []
+document.getElementById("quantity").innerHTML = produitsPanier.length;
+
+
 
 function AjouterPanier(id) {
     var produitActuel = listeDesProduits[id]
@@ -87,6 +91,7 @@ function AjouterPanier(id) {
     </tr>
    `
     }
+    document.getElementById("quantity").innerHTML = produitsPanier.length;
 }
 
 function DeleteItem(id) {
@@ -99,6 +104,7 @@ function DeleteItem(id) {
         document.getElementById("Quantity" + produitActuel.id).innerHTML = produitActuel.quantity
     } else {
         document.getElementById('cart-row' + id).remove()
+        document.getElementById("quantity").innerHTML = produitsPanier.length;
     }
 
 }
