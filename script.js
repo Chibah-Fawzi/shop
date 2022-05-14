@@ -8,23 +8,25 @@ var amounts = [5, 12, 14, 15, 9]
 var listeDesProduits = []
 
 var affichageHTML = ''
+function ShowProducts() {
 
-for (let index = 0; index < names.length; index++) {
 
-    const produit = {
-        id: index,
-        nom: names[index],
-        prix: prices[index],
-        description: descriptions[index],
-        image: images[index],
-        amount: amounts[index],
-        totalPrice: prices[index],
-        quantity: 1
-    }
-    listeDesProduits.push(produit)
+    for (let index = 0; index < names.length; index++) {
 
-    /*html */
-    affichageHTML += `
+        const produit = {
+            id: index,
+            nom: names[index],
+            prix: prices[index],
+            description: descriptions[index],
+            image: images[index],
+            amount: amounts[index],
+            totalPrice: prices[index],
+            quantity: 1
+        }
+        listeDesProduits.push(produit)
+
+        /*html */
+        affichageHTML += `
     <div class="col-4">
    <div class="card" style="width: 18rem;">
   <img src=${images[index]} class="card-img-top">
@@ -37,10 +39,12 @@ for (let index = 0; index < names.length; index++) {
   </div>
 </div>
     `
+    }
+
+    document.getElementById('mesproduits').innerHTML = affichageHTML
 }
 
-document.getElementById('mesproduits').innerHTML = affichageHTML
-
+ShowProducts()
 
 var produitsPanier = []
 
@@ -85,7 +89,6 @@ function AjouterPanier(id) {
     }
 }
 
-
 function DeleteItem(id) {
     produitsPanier = produitsPanier.filter((element) => element.id != id)
 
@@ -99,3 +102,50 @@ function DeleteItem(id) {
     }
 
 }
+
+var form = document.getElementById('form')
+
+form.addEventListener('submit', function AddProducts(e) {
+    e.preventDefault();
+
+    var name = document.getElementById('name').value
+    var price = document.getElementById('price').value
+    var desc = document.getElementById('desc').value
+    var amt = document.getElementById('amt').value
+
+    const newProduct = {
+        id: listeDesProduits.length,
+        nom: name,
+        prix: price,
+        description: desc,
+        amount: amt,
+        totalPrice: price,
+        quantity: 1
+    }
+
+    if (name == "" || desc == "" || price == "" || amt == "") {
+        alert('You need to add content!');
+    }
+
+    if (typeof (amt) && typeof (price) != Number) {
+        alert('Please enter a number ! ')
+    }
+
+    listeDesProduits.push(newProduct)
+    /*html*/
+    affichageHTML += `
+    <div class="col-4">
+   <div class="card" style="width: 18rem;">
+  <img src=${images[0]} class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">${newProduct.nom}</h5>
+    <p class="card-text">${newProduct.description}</p>
+     <button onclick=AjouterPanier(${newProduct.id}) style="width:160px" type="button" id="add">Add to cart</button>
+    <p>${newProduct.prix}$</p>
+  </div>
+  </div>
+</div>`
+
+    document.getElementById('mesproduits').innerHTML = affichageHTML
+
+})
