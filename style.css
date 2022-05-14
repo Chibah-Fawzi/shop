@@ -1,0 +1,56 @@
+#mesproduits {
+  margin: 10vh 0;
+  row-gap: 10vh;
+}
+img {
+  width: 250px;
+  height: 250px;
+}
+html {
+  overflow-x: hidden;
+}
+.rounded {
+  height: 30px;
+  width: 30px;
+}
+.badge {
+  background-color: brown;
+  z-index: 2;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+.cart {
+  color: white;
+}
+
+.addproduct,
+#add {
+  font-family: "Montserrat", sans-serif;
+  margin: 5rem 0;
+  padding: 1rem;
+  background: none;
+  text-transform: uppercase;
+  border: 1px solid #dd4747;
+}
+input,
+textarea {
+  padding: 5px 10px;
+  width: 220px;
+}
+#add {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 220px;
+}
+.addproduct:hover,
+#add:hover {
+  background: #dd4747;
+  color: #fff;
+}
+.addproduct:active,
+#add:active .addproduct:focus,
+#add:focus {
+  outline: none;
+}
