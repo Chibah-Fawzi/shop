@@ -84,3 +84,8 @@ function AjouterPanier(id) {
    `
     }
 }
+
+
+function DeleteItem(id) {
+
+}
